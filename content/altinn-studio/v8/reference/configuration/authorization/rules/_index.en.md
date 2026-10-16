@@ -367,3 +367,22 @@ This rule allows application owner to delete an instance. This can be done regar
     </xacml:ObligationExpression>
   </xacml:ObligationExpressions>
 ```
+
+## System users can access with authentication level 3
+
+A system user is always at level 3. If the app requires level 4, system users are only let in when the policy also has `urn:altinn:minimum-authenticationlevel-systemuser` with value 3. End users still need level 4. Requires an app on .NET 10 with `Altinn.App` [[FIX BEFORE MERGE: first v8 version with Altinn.Common.PEP 5.0.0]] or later.
+
+```xml {linenos=false,hl_lines=[8,9]}
+<xacml:ObligationExpressions>
+    <xacml:ObligationExpression FulfillOn="Permit" ObligationId="urn:altinn:obligation:authenticationLevel1">
+      <xacml:AttributeAssignmentExpression AttributeId="urn:altinn:obligation1-assignment1" Category="urn:altinn:minimum-authenticationlevel">
+        <xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">4</xacml:AttributeValue>
+      </xacml:AttributeAssignmentExpression>
+    </xacml:ObligationExpression>
+    <xacml:ObligationExpression FulfillOn="Permit" ObligationId="urn:altinn:obligation:authenticationLevel3">
+      <xacml:AttributeAssignmentExpression AttributeId="urn:altinn:obligation3-assignment3" Category="urn:altinn:minimum-authenticationlevel-systemuser">
+        <xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">3</xacml:AttributeValue>
+      </xacml:AttributeAssignmentExpression>
+    </xacml:ObligationExpression>
+  </xacml:ObligationExpressions>
+```

@@ -128,6 +128,17 @@ Obligation-delen av policyen brukes til å definere informasjon som skal brukes 
 
 Hvis nødvendig autentiseringsnivå er satt til 4, må du definere at tjenesteeier kan samhandle med det gjennom nivå 3-autentisering for Maskinporten. Dette fordi Maskinporten er definert som nivå 3. Se [regelbiblioteket](rules/) for eksempler.
 
+### Systembrukere og autentiseringsnivå 4
+
+En systembruker er alltid autentisert på nivå 3. Krever appen nivå 4, får systembrukeren derfor avslag (403) selv om en regel gir den tilgang. Du kan åpne for systembrukere likevel ved å legge til obligation-en `urn:altinn:minimum-authenticationlevel-systemuser` med verdi 3 ved siden av det generelle kravet. Den senker bare kravet for systembrukere; sluttbrukere må fortsatt ha nivå 4. Se [regelbiblioteket](rules/#systembruker-kan-få-tilgang-med-autentiseringsnivå-3) for et fullstendig eksempel.
+
+I policyeditoren i Altinn Studio gjør du det samme ved å krysse av for «Vi tillater at systembruker kan bruke denne tjenesten» under sikkerhetsnivå.
+
+Forutsetninger:
+
+- Appen bruker `Altinn.App`-pakkene i versjon [[FIX BEFORE MERGE: første v9-versjon med Altinn.Common.PEP 5.0.0]] eller nyere.
+- Plattformen (Storage) håndhever obligation-en fra [[FIX BEFORE MERGE: dato Storage med Altinn.Common.PEP 5.0.0 er i produksjon]].
+
 Eksempel med autentiseringsnivå 2:
 
 {{< code-title >}}

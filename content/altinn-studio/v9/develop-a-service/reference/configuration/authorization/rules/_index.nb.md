@@ -402,3 +402,26 @@ App/config/authorization/policy.xml
     </xacml:ObligationExpression>
   </xacml:ObligationExpressions>
 ```
+
+## Systembruker kan få tilgang med autentiseringsnivå 3
+
+En systembruker er alltid på nivå 3. Krever appen nivå 4, slipper systembrukere inn bare når policyen også har `urn:altinn:minimum-authenticationlevel-systemuser` med verdi 3. Sluttbrukere må fortsatt ha nivå 4. Krever `Altinn.App` [[FIX BEFORE MERGE: første v9-versjon med Altinn.Common.PEP 5.0.0]] eller nyere.
+
+{{< code-title >}}
+App/config/authorization/policy.xml
+{{< /code-title >}}
+
+```xml {linenos=false,hl_lines=[8,9]}
+<xacml:ObligationExpressions>
+    <xacml:ObligationExpression FulfillOn="Permit" ObligationId="urn:altinn:obligation:authenticationLevel1">
+      <xacml:AttributeAssignmentExpression AttributeId="urn:altinn:obligation1-assignment1" Category="urn:altinn:minimum-authenticationlevel">
+        <xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">4</xacml:AttributeValue>
+      </xacml:AttributeAssignmentExpression>
+    </xacml:ObligationExpression>
+    <xacml:ObligationExpression FulfillOn="Permit" ObligationId="urn:altinn:obligation:authenticationLevel3">
+      <xacml:AttributeAssignmentExpression AttributeId="urn:altinn:obligation3-assignment3" Category="urn:altinn:minimum-authenticationlevel-systemuser">
+        <xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">3</xacml:AttributeValue>
+      </xacml:AttributeAssignmentExpression>
+    </xacml:ObligationExpression>
+  </xacml:ObligationExpressions>
+```

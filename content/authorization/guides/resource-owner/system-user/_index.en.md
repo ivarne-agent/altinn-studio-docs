@@ -162,3 +162,9 @@ The API provider must have logic in their API to either reject or accept the req
   ]
 }
 ```
+
+### Authentication level for system users
+
+A system user is always authenticated at level 3. The Altinn PDP response carries the resource's authentication level requirement as the obligation `urn:altinn:minimum-authenticationlevel`. If the resource requires level 4, the resource owner can still allow system users by adding the obligation `urn:altinn:minimum-authenticationlevel-systemuser` with value 3 to the policy. It only lowers the requirement for system users.
+
+With `Altinn.Common.PEP` 5.0.0 or later this is handled for you. If your API evaluates the obligations itself, let the system user in when `urn:altinn:minimum-authenticationlevel-systemuser` is present with a value of 3 or lower, even though `urn:altinn:minimum-authenticationlevel` is 4. For Altinn apps, see [authorization in Altinn Studio](/en/altinn-studio/v8/reference/configuration/authorization/#system-users-and-authentication-level-4).

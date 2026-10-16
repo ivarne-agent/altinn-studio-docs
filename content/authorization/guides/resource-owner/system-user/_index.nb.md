@@ -167,4 +167,10 @@ Tjenesteeier må i sitt API ha logikk for å kunne avvise eller godta forespørs
 }
 ```
 
+### Autentiseringsnivå for systembrukere
+
+En systembruker er alltid autentisert på nivå 3. Svaret fra Altinn PDP inneholder ressursens krav til autentiseringsnivå som obligation-en `urn:altinn:minimum-authenticationlevel`. Krever ressursen nivå 4, kan ressurseier likevel tillate systembrukere ved å legge til obligation-en `urn:altinn:minimum-authenticationlevel-systemuser` med verdi 3 i policyen. Den senker bare kravet for systembrukere.
+
+Bruker du `Altinn.Common.PEP` 5.0.0 eller nyere, håndteres dette automatisk. Vurderer API-et obligation-ene selv, må det slippe systembrukeren inn når `urn:altinn:minimum-authenticationlevel-systemuser` er til stede med en verdi på 3 eller lavere, selv om `urn:altinn:minimum-authenticationlevel` er 4. For Altinn-apper, se [autorisasjon i Altinn Studio](/nb/altinn-studio/v8/reference/configuration/authorization/#systembrukere-og-autentiseringsnivå-4).
+
 Se flere eksempler på bruk av Altinn PDP her.

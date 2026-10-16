@@ -114,6 +114,17 @@ If the required authentication level is set to 4, you must define that the servi
 level 3 authentication for Maskinporten.
 This is because Maskinporten is defined as level 3. See the rule library for examples.
 
+### System users and authentication level 4
+
+A system user is always authenticated at level 3. If the app requires level 4, a system user is rejected (403) even when a rule grants it access. To let system users in anyway, add the obligation `urn:altinn:minimum-authenticationlevel-systemuser` with value 3 next to the general requirement. It only lowers the requirement for system users; end users still need level 4. See the [rule library](rules/#system-users-can-access-with-authentication-level-3) for a complete example.
+
+In the policy editor in Altinn Studio, tick "Vi tillater at systembruker kan bruke denne tjenesten" under the security level to get the same obligation.
+
+Prerequisites:
+
+- The app uses the `Altinn.App` packages version [[FIX BEFORE MERGE: first v8 version with Altinn.Common.PEP 5.0.0]] or later and builds for .NET 10. Apps that build for .NET 8 ignore the obligation and keep rejecting system users at level 4, because `Altinn.Common.PEP` 5.0.0 is not available for .NET 8.
+- The platform (Storage) enforces the obligation from [[FIX BEFORE MERGE: date Storage with Altinn.Common.PEP 5.0.0 is in production]].
+
 Example with authentication level 2
 
 ```xml {linenos=false,hl_lines=[4]}
