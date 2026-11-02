@@ -19,7 +19,7 @@ cannot affect the runtime environment of other service owners, neither during te
 
 ## Personal data in submissions
 
-Each service owner has their own storage account where data is stored using the Altinn platform.
+Data is stored using the Altinn platform in storage accounts dedicated to each service owner. These accounts are never shared with other service owners. An owner may have more than one account, for example during a migration to a new account.
 This is where form data and file attachments are stored.
 Metadata about instances are stored in a shared database for faster lookups when searching.
 

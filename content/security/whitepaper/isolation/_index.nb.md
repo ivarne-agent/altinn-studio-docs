@@ -18,7 +18,7 @@ Dette medfører at kjøremiljø til en tjenesteeier ikke kan påvirke andre tjen
 
 ## Personopplysninger i innsendinger
 
-Hver tjenesteeier har en egen lagringskonto der data lagres ved hjelp av Altinn-platform.
+Data lagres via Altinn-plattformen på lagringskontoer som er dedikert til hver tjenesteeier. Kontoene deles aldri med andre tjenesteeiere. En tjenesteeier kan ha flere kontoer, for eksempel under flytting til en ny konto.
 Her lagres skjemadata og filvedlegg. Metadata om instanser lagres i en felles database for raskere oppslag ved søk.
 
 Merk at tjenesteeier ikke har tilgang til disse ressursene i Azure, men må benytte Altinn 3 APIene for uthenting av innsendte data.

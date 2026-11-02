@@ -11,7 +11,7 @@ Apps that need the cabability to store data uses the storage service in the Alti
 Stored in Azure Cosmos Db.
 
 ## Formdata and attachments
-Stored in Azure Blob Storage. One storage account for each application owner.
+Data is stored in Azure Blob Storage, in storage accounts dedicated to the application owner. Storage records which account holds each data element version. This lets an owner move to a new account without changing the data elements.
 
 ## Additional details
 
