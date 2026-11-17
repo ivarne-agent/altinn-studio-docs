@@ -82,7 +82,7 @@ Legger brukeren til en oppføring i et underskjema, eller oppretter et annet sys
 
 ### Dette får prosessoren
 
-- `instanceDataMutator` gir deg tilgang til alle dataelementene i instansen. En instans er én utfylling av skjemaet, og dataelementene er skjemadataene og vedleggene som hører til den. Du kan hente, legge til og fjerne dataelementer, og du kan stoppe hele lagringen med `AbandonAllChanges`.
+- `instanceDataMutator` gir deg tilgang til alle dataelementene i instansen. En instans er én utfylling av skjemaet, og dataelementene er skjemadataene og vedleggene som hører til den. Du kan hente, legge til og fjerne dataelementer, og du kan stoppe hele lagringen med `AbandonAllChanges`. Gjennom `instanceDataMutator.Instance` kan du også endre dataverdier, presentasjonstekster og metadata for dataelementene. Appen lagrer dem sammen med det brukeren lagrer. Se [Endre dataverdier og metadata fra koden]({{< relref "/altinn-studio/v9/develop-a-service/data/instance-metadata" >}}).
 - `taskId` er ID-en til steget i prosessen som instansen står i.
 - `changes` inneholder endringene i lagringen:
   - `FormDataChanges` gjelder skjemadata. `CurrentFormData` er dataene etter endringen, og `PreviousFormData` er dataene før.

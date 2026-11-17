@@ -27,6 +27,8 @@ Du lager en klasse som implementerer grensesnittet, og registrerer den som en tr
 
 Endringer du gjør gjennom `context.InstanceDataMutator`, blir lagret når hooken er ferdig uten feil. Skriv alle endringer gjennom den. Mens arbeidsflyten behandler instansen, avviser Storage endringer som kommer direkte gjennom `IDataClient` eller `IInstanceClient`.
 
+Dataverdier, presentasjonstekster og metadata for dataelementene endrer du direkte på `context.InstanceDataMutator.Instance`, for eksempel `(context.InstanceDataMutator.Instance.DataValues ??= [])["caseNumber"] = "2026-1";`. Endrer hooken andre egenskaper på instansen, for eksempel `DueBefore`, feiler hooken uten nye forsøk. Se [Endre dataverdier og metadata fra koden]({{< relref "/altinn-studio/v9/develop-a-service/data/instance-metadata" >}}) for hva appen lagrer.
+
 Hooken kjører i arbeidsflytmotoren, ikke i forespørselen fra brukeren. `IAuthenticationContext.Current` er derfor appen selv, ikke brukeren som sendte inn, og `HttpContext` gir deg ikke brukerens språk eller pålogging.
 
 `Execute` returnerer et `HandlerResult`:

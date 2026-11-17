@@ -103,6 +103,33 @@ public class MinUtfylling : IInstantiationProcessor
 }
 ```
 
+### Eksempel: Sett en dataverdi når instansen blir opprettet
+
+Vil du også endre dataverdier, presentasjonstekster eller metadata for dataelementene, bruker du overlasten av `DataCreation` som tar imot en `IInstanceDataMutator`, og endrer `Instance` på den. Appen lagrer endringene når den oppretter instansen. Se [Endre dataverdier og metadata fra koden]({{< relref "/altinn-studio/v9/develop-a-service/data/instance-metadata" >}}) for hva du kan endre.
+
+```csharp
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Altinn.App.Core.Features;
+
+namespace Altinn.App.Logic.Instantiation;
+
+public class MinUtfylling : IInstantiationProcessor
+{
+    public Task DataCreation(
+        IInstanceDataMutator instanceDataMutator,
+        object data,
+        Dictionary<string, string>? prefill)
+    {
+        (instanceDataMutator.Instance.DataValues ??= [])["caseNumber"] = "2026-1";
+
+        return Task.CompletedTask;
+    }
+}
+```
+
+Når brukeren lager en kopi av en instans, kaller appen bare overlasten som tar imot en `Instance`.
+
 ## Tips
 - Du kan gjøre oppslag mot eksterne kilder for å hente inn data som så kan brukes til forhåndsutfylling.
 - Husk at alle navn/felter i eksemplene må byttes ut med navn på klassen/feltene for din datamodell.

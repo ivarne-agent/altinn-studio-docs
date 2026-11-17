@@ -55,6 +55,8 @@ public class ExampleServiceTask : IServiceTask
 
 Du leser og endrer data gjennom `context.InstanceDataMutator`. Plattformen lagrer endringene når oppgaven svarer at den gikk bra. Husk at dataelementer fra tidligere oppgaver er låst.
 
+Dataverdier, presentasjonstekster og metadata for dataelementene endrer du direkte på `context.InstanceDataMutator.Instance`. Andre egenskaper på instansen kan oppgaven ikke endre. Se [Endre dataverdier og metadata fra koden]({{< relref "/altinn-studio/v9/develop-a-service/data/instance-metadata" >}}).
+
 ## Registrere systemoppgaven
 
 Registrer klassen i `Program.cs`, slik at plattformen finner den:
